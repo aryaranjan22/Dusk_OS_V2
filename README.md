@@ -1,4 +1,5 @@
 # Dusk_OS_V2 a remake of DuskOS_V1 which was banned
+# Mr Reviewer Please check AI Agent by 2 clicks it work like that
 This is the remake of my WebOS 1 name DuskOS_v1 AND IS GREATLY IMPOROVED THAN LAST VERSION
  # Walk Through of Making (it is simple)
 * **Starting Point, I start with seeing the structure and base code of the previous version and made it similar more feature and usability, on 18-09-26**
