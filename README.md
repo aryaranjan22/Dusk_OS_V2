@@ -1,6 +1,8 @@
 # Dusk_OS_V2 a remake of DuskOS_V1 which was banned and I Mentioned the usage of AI, if still problem tell which part to change
 * # I have genuinely tried all ways to remove what ever you said AI was (which actually was at first commit) (i used my OLD OS structure in this which i spent 4Hr 6min Hrs on, so it looks AI, i used an Guide to make it)and yet youre not accepting, please change reviewer 
 * # DM me plis in Slack for proof
+* <img width="1009" height="411" alt="image" src="https://github.com/user-attachments/assets/7e599605-ac61-454b-b4a3-92b0b3b9e5de" />
+
 This is the remake of my WebOS 1 name DuskOS_v1 AND IS GREATLY IMPOROVED THAN LAST VERSION
  # Walk Through of Making (it is simple)
 * **Starting Point, I start with seeing the structure and base code of the previous version and made it similar more feature and usability, on 18-09-26**
