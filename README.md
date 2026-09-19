@@ -1,31 +1,29 @@
-# Dusk_OS_V2 a remake of DuskOS_V1 which was banned and I Mentioned the usage of AI, if still problem tell which part to change
-* # I have genuinely tried all ways to remove what ever you said AI was (which actually was at first commit) (i used my OLD OS structure in this which i spent 4Hr 6min Hrs on, so it looks AI, i used an Guide to make it)and yet youre not accepting, please change reviewer 
-* # DM me plis in Slack for proof
-* <img width="1009" height="411" alt="image" src="https://github.com/user-attachments/assets/7e599605-ac61-454b-b4a3-92b0b3b9e5de" />
+# 🌙 duskOS_V2 ( a remake for WebOS2 mission, as it was banned due to some reason)
 
-This is the remake of my WebOS 1 name DuskOS_v1 AND IS GREATLY IMPOROVED THAN LAST VERSION
- # Walk Through of Making (it is simple)
-* **Starting Point, I start with seeing the structure and base code of the previous version and made it similar more feature and usability, on 18-09-26**
-* **Completed the whole project in next 1:30Hr of vigorous 15-20 min of thinking and RnD about to add more feature and optimization and a easter egg too (idea from SLOP OS)**
-# Total Breakdown files used
-* index.html
-* style.css
-* script.js
-# AI Usage Declaration
-* debugs of visual problem
-* Github Copilot 2-3 Times (i was  able to understand project)
-* Rating by ChatGPT (like really)
-# Problems faced during creation
-* I was genuinely frustrated about will it be send beyond review
-* Sleep Deprived
-* Confusion of addtional feature
-# Proud Feel giver
-* Looks good
-* Feel like MacOS when used
-* IDK what to put more, like My Hardwork Paid OFF?
-# About WebOS (Real part after the Yapping)
-* **Not your crappy ahh animation, smooth animations with glass morphism**
-* **Include Calculator, Browser, File Explrore, a Search Menu, Gallery, Setting, Resource monitor and much more**
-* **based only on .html, .css, .js for extreme lightweight performance**
-# And at last What I want to add
-* working in-built browser, better gallery, a mini pong game, working music player
+**duskOS** is a web-based OS simulator made with **HTML, CSS & JavaScript**.
+
+I wanted to make a browser-based desktop that actually *feels* like an OS, not just sake
+
+## ✦ Features Includes are
+
+- 🖥️ Boot screen and beautiful desktop
+- 🍎 macOS-inspired menu bar, who dont like apple, even me but i can only dream
+- 🪟 Movable & resizable windows, took me a while t do these
+- 📱 Dock + Dynamic Island, this is the one i love
+- 🔍 Spotlight-style search
+- 🎨 Glass-style UI
+- ⚙️ Control Center, basically, can change theme
+- 🔔 Toast notifications
+
+## 📦 Apps
+
+**Finder, Notes, Terminal, Calculator, Vibes, Weather, Paint, Clock, Orbit Browser, Tasks, Gallery, System Monitor, Clipboard, Settings, About This Mac & AI.exe**
+
+## 🛠️ Built With Love and
+
+**HTML** → Structure OFC bro
+**CSS** → UI and smoolth looking glassmorph animations  
+**JavaScript** → Apps + system logic, important for function
+
+Made as a **learning project** to experiment with web development, UI/UX and JavaScript.
+**Made with 💻 + way too much CSS.**
