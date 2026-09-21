@@ -6,14 +6,14 @@ I wanted to make a browser-based desktop that actually *feels* like an OS, not j
 
 ## ✦ Features Includes are
 
-- 🖥️ Boot screen and beautiful desktop
-- 🍎 macOS-inspired menu bar, who dont like apple, even me but i can only dream
-- 🪟 Movable & resizable windows, took me a while t do these
-- 📱 Dock + Dynamic Island, this is the one i love
-- 🔍 Spotlight-style search
-- 🎨 Glass-style UI
-- ⚙️ Control Center, basically, can change theme
-- 🔔 Toast notifications
+-  Boot screen and beautiful desktop
+-  macOS-inspired menu bar, who dont like apple, even me but i can only dream
+-  Movable & resizable windows, took me a while t do these
+-  Dock + Dynamic Island, this is the one i love
+-  Spotlight-style search
+-  Glass-style UI
+-  Control Center, basically, can change theme
+-  Toast notifications
 
 ## 📦 Apps
 
