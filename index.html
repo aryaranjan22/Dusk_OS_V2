@@ -1,603 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>duskOS</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TON-618 OS</title>
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- duskOS stylesheet -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- TON-618 OS stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- =====================================================
-       BOOT SCREEN
-       ===================================================== -->
-
+  <!-- BOOT SCREEN -->
   <div id="boot">
-
-    <div class="logo">
-      <span class="dot"></span>
-      duskOS
+    <div class="boot-brand">
+      <img class="boot-logo" src="ton618-logo.svg" alt="TON-618 OS logo">
+      <div class="boot-name">TON-618 <span>OS</span></div>
+      <div class="boot-tag">A SMALL DESKTOP THAT RUNS IN YOUR BROWSER</div>
     </div>
-
-    <div class="bar">
-      <i></i>
-    </div>
-
+    <div class="bar"><i></i></div>
+    <div class="boot-status">Starting TON-618 OS...</div>
   </div>
 
-
-  <!-- =====================================================
-       DESKTOP
-       ===================================================== -->
-
+  <!-- DESKTOP -->
   <div id="desktop">
     <div class="sun"></div>
   </div>
 
-
-  <!-- =====================================================
-       DESKTOP ICONS
-       ===================================================== -->
-
+  <!-- DESKTOP ICONS -->
   <div id="desktop-icons">
-
-    <div
-      class="dicon"
-      data-open="finder"
-    >
-      <div class="glyph g-finder">
-        🗂️
-      </div>
-
-      <span>
-        Files
-      </span>
+    <div class="dicon" data-open="finder">
+      <div class="glyph g-finder">🗂️</div>
+      <span>Files</span>
     </div>
-
-
-    <div
-      class="dicon"
-      data-open="about"
-    >
-      <div class="glyph g-about">
-        💾
-      </div>
-
-      <span>
-        About This Mac
-      </span>
+    <div class="dicon" data-open="about">
+      <div class="glyph g-about">💾</div>
+      <span>About TON-618 OS</span>
     </div>
-
-    <div
-      class="dicon ai-shortcut"
-      data-open="ai"
-    >
-      <div class="glyph g-ai">
-        ✦
-      </div>
-
-      <span>
-        AI.exe
-      </span>
+    <div class="dicon ai-shortcut" data-open="ai">
+      <div class="glyph g-ai">✦</div>
+      <span>AI.exe</span>
     </div>
-
   </div>
 
+  <div id="desktop-context" class="desktop-context" hidden>
+    <button data-desktop-action="add">＋ Add application icon</button>
+    <button data-desktop-action="reset">↺ Reset icon positions</button>
+  </div>
 
-  <!-- =====================================================
-       MENU BAR
-       ===================================================== -->
+  <div id="shortcut-picker" class="shortcut-picker" hidden>
+    <div class="shortcut-picker-head">
+      <div><small>DESKTOP</small><h3>Add application icon</h3></div>
+      <button id="shortcut-picker-close" aria-label="Close">×</button>
+    </div>
+    <div id="shortcut-picker-list"></div>
+  </div>
 
+  <!-- MENU BAR -->
   <div id="menubar">
-
     <div class="left">
-
-      <div class="logo">
-        <span class="dot"></span>
-        duskOS
-      </div>
-
-      <div
-        class="menuitem active"
-        id="active-app-name"
-      >
-        Finder
-      </div>
-
-      <div class="menuitem">
-        File
-      </div>
-
-      <div class="menuitem">
-        Edit
-      </div>
-
-      <div class="menuitem">
-        View
-      </div>
-
+      <div class="logo"><span class="logo-ring"></span> TON-618 OS</div>
+      <div class="menuitem active" id="active-app-name">Finder</div>
+      <div class="menuitem">File</div>
+      <div class="menuitem">Edit</div>
+      <div class="menuitem">View</div>
     </div>
-
-
     <div class="right">
-
-      <div
-        class="icon-btn"
-        title="Wi-Fi"
-      >
-        📶
-      </div>
-
-      <div
-        class="icon-btn"
-        title="Battery"
-      >
-        🔋
-      </div>
-
-      <div
-        class="icon-btn"
-        id="cc-toggle"
-        title="Control Center"
-      >
-        ⚙️
-      </div>
-
-      <div id="clock">
-        Sun 23 Aug&nbsp;&nbsp;12:00 PM
-      </div>
-
+      <!-- Added IDs for live hardware tracking -->
+      <div class="icon-btn" id="wifi-icon" title="Wi-Fi">📶</div>
+      <div class="icon-btn" id="battery-icon" title="Battery">🔋</div>
+      <div class="icon-btn" id="cc-toggle" title="Control Center">⚙️</div>
+      <div id="clock">Sun 23 Aug&nbsp;&nbsp;12:00 PM</div>
     </div>
-
   </div>
 
-
-  <!-- =====================================================
-       CONTROL CENTER
-       ===================================================== -->
-
+  <!-- CONTROL CENTER -->
   <div id="control-center">
-
     <div class="cc-row">
-
-      <div
-        class="cc-tile appearance-switch"
-        id="cc-appearance-toggle"
-      >
-
-        <span class="t-label">
-          Appearance
-        </span>
-
-        <span class="t-value appearance-value">
-          Dusk
-        </span>
-
+      <div class="cc-tile appearance-switch" id="cc-appearance-toggle">
+        <span class="t-label">Appearance</span>
+        <span class="t-value appearance-value">Dusk</span>
       </div>
-
-
-      <div
-        class="cc-tile"
-        id="wifi-tile"
-      >
-
-        <span class="t-label">
-          Wi-Fi
-        </span>
-
-        <span class="t-value">
-          Connected
-        </span>
-
+      <div class="cc-tile" id="wifi-tile">
+        <span class="t-label">Wi-Fi</span>
+        <span class="t-value">Connected</span>
       </div>
-
     </div>
-
-
     <div class="cc-slider-wrap">
-
-      <div class="t-label">
-        Brightness
-      </div>
-
-      <input
-        class="cc-slider"
-        type="range"
-        id="brightness"
-        min="40"
-        max="130"
-        value="100"
-      >
-
+      <div class="t-label">Brightness</div>
+      <input class="cc-slider" type="range" id="brightness" min="40" max="130" value="100">
     </div>
-
-
     <div class="cc-slider-wrap">
-
-      <div class="t-label">
-        Sound
-      </div>
-
-      <input
-        class="cc-slider volume-slider"
-        type="range"
-        id="volume"
-        min="0"
-        max="100"
-        value="60"
-      >
-
+      <div class="t-label">Sound</div>
+      <input class="cc-slider volume-slider" type="range" id="volume" min="0" max="100" value="60">
     </div>
-
-
-    <button
-      class="cc-action"
-      id="screenshot-button"
-      type="button"
-    >
-
-      <span>
-        📸
-      </span>
-
-      <span>
-        Take Screenshot
-      </span>
-
+    <button class="cc-action" id="screenshot-button" type="button">
+      <span>📸</span>
+      <span>Take Screenshot</span>
     </button>
-
   </div>
 
-
-  <!-- =====================================================
-       DYNAMIC ISLAND / SPOTLIGHT
-       ===================================================== -->
-
+  <!-- DYNAMIC ISLAND / SPOTLIGHT -->
   <div id="island">
-
     <div class="pulse"></div>
-
-    <div
-      class="island-time"
-      id="island-time"
-    >
-      12:00
-    </div>
-
-
+    <div class="island-time" id="island-time">12:00</div>
     <div class="island-body">
-
       <div class="search-row">
-
-        <input
-          id="spotlight-input"
-          type="text"
-          placeholder="Search apps, or try 12*4 …"
-          autocomplete="off"
-        >
-
-        <span class="kbd">
-          esc
-        </span>
-
+        <input id="spotlight-input" type="text" placeholder="Search apps, or try 12*4 …" autocomplete="off">
+        <span class="kbd">esc</span>
       </div>
-
-
       <div id="spotlight-results"></div>
-
     </div>
-
   </div>
 
-
-  <!-- =====================================================
-       WINDOWS LAYER
-       ===================================================== -->
-
+  <!-- WINDOWS LAYER -->
   <div id="windows-layer"></div>
 
-
-  <!-- =====================================================
-       DOCK
-       ===================================================== -->
-
+  <!-- DOCK -->
   <div id="dock-wrap">
-
     <div id="dock">
-
-
-      <!-- Finder -->
-
-      <div
-        class="dock-item g-finder"
-        data-app="finder"
-      >
-
-        <span>
-          🗂️
-        </span>
-
-        <div class="tip">
-          Finder
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Notes -->
-
-      <div
-        class="dock-item g-notes"
-        data-app="notes"
-      >
-
-        <span>
-          📝
-        </span>
-
-        <div class="tip">
-          Notes
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Terminal -->
-
-      <div
-        class="dock-item g-term"
-        data-app="term"
-      >
-
-        <span>
-          ▮
-        </span>
-
-        <div class="tip">
-          Terminal
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Calculator -->
-
-      <div
-        class="dock-item g-calc"
-        data-app="calc"
-      >
-
-        <span>
-          🧮
-        </span>
-
-        <div class="tip">
-          Calculator
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Music -->
-
-      <div
-        class="dock-item g-music"
-        data-app="music"
-      >
-
-        <span>
-          🎧
-        </span>
-
-        <div class="tip">
-          Vibes
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Weather -->
-
-      <div
-        class="dock-item g-weather"
-        data-app="weather"
-      >
-
-        <span>
-          🌤️
-        </span>
-
-        <div class="tip">
-          Weather
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Paint -->
-
-      <div
-        class="dock-item g-paint"
-        data-app="paint"
-      >
-
-        <span>
-          🎨
-        </span>
-
-        <div class="tip">
-          Paint
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Clock -->
-
-      <div
-        class="dock-item g-clock"
-        data-app="clockapp"
-      >
-
-        <span>
-          🕐
-        </span>
-
-        <div class="tip">
-          Clock
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- Separator -->
-
+      <div class="dock-item g-finder" data-app="finder"><span>🗂️</span><div class="tip">Finder</div><div class="dot"></div></div>
+      <div class="dock-item g-notes" data-app="notes"><span>📝</span><div class="tip">Notes</div><div class="dot"></div></div>
+      <div class="dock-item g-term" data-app="term"><span>▮</span><div class="tip">Terminal</div><div class="dot"></div></div>
+      <div class="dock-item g-calc" data-app="calc"><span>🧮</span><div class="tip">Calculator</div><div class="dot"></div></div>
+      <div class="dock-item g-music" data-app="music"><span>🎧</span><div class="tip">Vibes</div><div class="dot"></div></div>
+      <div class="dock-item g-weather" data-app="weather"><span>🌤️</span><div class="tip">Weather</div><div class="dot"></div></div>
+      <div class="dock-item g-paint" data-app="paint"><span>🎨</span><div class="tip">Paint</div><div class="dot"></div></div>
+      <div class="dock-item g-clock" data-app="clockapp"><span>🕐</span><div class="tip">Clock</div><div class="dot"></div></div>
       <div class="dock-sep"></div>
-
-      <div
-        class="dock-item g-browser"
-        data-app="browser"
-      >
-        <span>◎</span>
-        <div class="tip">Orbit Browser</div>
-        <div class="dot"></div>
-      </div>
-
-      <div
-        class="dock-item g-tasks"
-        data-app="tasks"
-      >
-        <span>✓</span>
-        <div class="tip">Tasks</div>
-        <div class="dot"></div>
-      </div>
-
-      <div
-        class="dock-item g-gallery"
-        data-app="gallery"
-      >
-        <span>◫</span>
-        <div class="tip">Gallery</div>
-        <div class="dot"></div>
-      </div>
-
-      <div
-        class="dock-item g-monitor"
-        data-app="monitor"
-      >
-        <span>⌁</span>
-        <div class="tip">System Monitor</div>
-        <div class="dot"></div>
-      </div>
-
-      <div
-        class="dock-item g-clipboard"
-        data-app="clipboard"
-      >
-        <span>▤</span>
-        <div class="tip">Clipboard</div>
-        <div class="dot"></div>
-      </div>
-
+      <div class="dock-item g-browser" data-app="browser"><span>◎</span><div class="tip">Orbit Browser</div><div class="dot"></div></div>
+      <div class="dock-item g-tasks" data-app="tasks"><span>✓</span><div class="tip">Tasks</div><div class="dot"></div></div>
+      <div class="dock-item g-gallery" data-app="gallery"><span>◫</span><div class="tip">Gallery</div><div class="dot"></div></div>
+      <div class="dock-item g-monitor" data-app="monitor"><span>⌁</span><div class="tip">System Monitor</div><div class="dot"></div></div>
+      <div class="dock-item g-clipboard" data-app="clipboard"><span>▤</span><div class="tip">Clipboard</div><div class="dot"></div></div>
       <div class="dock-sep"></div>
-
-
-      <!-- Settings -->
-
-      <div
-        class="dock-item g-settings"
-        data-app="settings"
-      >
-
-        <span>
-          ⚙️
-        </span>
-
-        <div class="tip">
-          Settings
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
-
-      <!-- About -->
-
-      <div
-        class="dock-item g-about"
-        data-app="about"
-      >
-
-        <span>
-          💾
-        </span>
-
-        <div class="tip">
-          About This Mac
-        </div>
-
-        <div class="dot"></div>
-
-      </div>
-
+      <div class="dock-item g-settings" data-app="settings"><span>⚙️</span><div class="tip">Settings</div><div class="dot"></div></div>
+      <div class="dock-item g-about" data-app="about"><span>◉</span><div class="tip">About TON-618 OS</div><div class="dot"></div></div>
     </div>
-
   </div>
 
-
-  <!-- =====================================================
-       TOAST NOTIFICATIONS
-       ===================================================== -->
-
+  <!-- TOAST NOTIFICATIONS -->
   <div id="toast-stack"></div>
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-
+  <!-- Screenshot engine -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
-
 </body>
-
 </html>
