@@ -1,4 +1,7 @@
-
+/* =========================================================
+   TON-618 OS — Browser Desktop
+   V2.0 — Full App + Window System
+   ========================================================= */
 
 
 /* =========================================================
@@ -128,7 +131,7 @@ const APPS = {
   },
 
   about: {
-    title: 'About This Mac',
+    title: 'About TON-618 OS',
     glyph: '💾',
     glyphClass: 'g-about',
     w: 380,
@@ -368,14 +371,9 @@ if (bootEl) {
 
 function openApp(appId) {
 
-  if (appId === 'ai') {
-    window.open(
-      'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      '_blank',
-      'noopener,noreferrer'
-    );
-    return;
-  }
+  // AI.exe is an in-page prank window now.
+  // It stays inside TON-618 OS and remains draggable like every other app.
+
 
   const existing =
     openWindows[appId];
@@ -908,7 +906,7 @@ function updateActiveApp() {
 
   activeName.textContent =
     APPS[appId]?.title ||
-    'duskOS';
+    'TON-618 OS';
 
 }
 
@@ -1424,7 +1422,7 @@ function renderApp(appId) {
         >
 
           <div class="line">
-            duskOS terminal — type "help" to get started.
+            TON-618 OS terminal — type "help" to get started.
           </div>
 
           <div class="prompt-row">
@@ -1504,7 +1502,7 @@ function renderApp(appId) {
             —
           </div>
 
-          <div class="mu-progress">
+          <div class="mu-progress" id="mu-progress" title="Seek">
 
             <div
               class="mu-fill"
@@ -1527,28 +1525,18 @@ function renderApp(appId) {
 
           <div class="mu-controls">
 
-            <button
-              id="mu-prev"
-              title="Previous"
-            >
-              ⏮
-            </button>
-
-            <button
-              id="mu-play"
-              title="Play"
-            >
-              ▶
-            </button>
-
-            <button
-              id="mu-next"
-              title="Next"
-            >
-              ⏭
-            </button>
+            <button id="mu-prev" title="Previous">⏮</button>
+            <button id="mu-play" title="Play">▶</button>
+            <button id="mu-next" title="Next">⏭</button>
 
           </div>
+
+          <label class="mu-volume">
+            <span>Volume</span>
+            <input id="mu-volume" type="range" min="0" max="100" value="60">
+          </label>
+
+          <audio id="mu-audio" preload="metadata"></audio>
 
           <div
             class="mu-list"
@@ -1621,7 +1609,7 @@ function renderApp(appId) {
           </div>
 
           <p class="wx-note">
-            Sample forecast — duskOS doesn't call a live weather service.
+            Sample forecast — TON-618 OS doesn't call a live weather service.
           </p>
 
         </div>
@@ -1943,6 +1931,26 @@ function renderApp(appId) {
 
 
     /* =====================================================
+       AI.EXE PRANK
+       ===================================================== */
+
+    case 'ai':
+      return `
+        <div class="app-ai">
+          <div class="ai-glow"></div>
+          <div class="ai-icon-big">✦</div>
+          <small>UNTRUSTED WEB APP</small>
+          <h2>AI.exe</h2>
+          <p>This is the harmless TON-618 OS prank module. Continue for a surprise.</p>
+          <div class="ai-actions">
+            <button class="ai-prank-btn" id="ai-prank">Run diagnostic</button>
+            <button class="ai-stop-btn" id="ai-stop" type="button">Cancel</button>
+          </div>
+          <div class="ai-stage" id="ai-stage" hidden></div>
+        </div>
+      `;
+
+    /* =====================================================
        SETTINGS
        ===================================================== */
 
@@ -2011,10 +2019,13 @@ function renderApp(appId) {
 
               </div>
 
-              <p class="st-hint">
-                Switch between Dusk and Daylight.
-                This stays in sync with Control Center.
-              </p>
+              <div class="theme-grid">
+                <button type="button" class="theme-card" data-theme="singularity"><b>Singularity</b><span>Warm dark theme</span></button>
+                <button type="button" class="theme-card" data-theme="obsidian"><b>Obsidian</b><span>Plain dark theme</span></button>
+                <button type="button" class="theme-card" data-theme="aurora"><b>Aurora</b><span>Cool blue theme</span></button>
+                <button type="button" class="theme-card" data-theme="daylight"><b>Daylight</b><span>Light desktop theme</span></button>
+              </div>
+              <p class="st-hint">Themes change the visual system without removing or resetting your apps.</p>
 
             </div>
 
@@ -2082,7 +2093,7 @@ function renderApp(appId) {
               </h3>
 
               <p class="st-hint">
-                duskOS 2.0 — a tiny desktop environment
+                TON-618 OS 3.0 — a tiny browser desktop environment
                 built in HTML, CSS and JavaScript.
               </p>
 
@@ -2110,7 +2121,7 @@ function renderApp(appId) {
           </div>
 
           <h2>
-            duskOS
+            TON-618 OS
           </h2>
 
           <p>
@@ -2196,6 +2207,7 @@ function postMount(
   if (appId === 'gallery') setupGallery(win);
   if (appId === 'monitor') setupMonitor(win);
   if (appId === 'clipboard') setupClipboard(win);
+  if (appId === 'ai') setupAI(win);
 
 }
 
@@ -2321,10 +2333,10 @@ function setupTerminal(win) {
       help,
 
     about: () =>
-      'duskOS — a browser-based desktop environment.',
+      'TON-618 OS — a browser-based desktop environment.',
 
     projects: () =>
-      '→ duskOS\n→ Paint\n→ Clock\n→ Dynamic Island\n→ Window Manager',
+      '→ TON-618 OS\n→ Paint\n→ Clock\n→ Dynamic Island\n→ Window Manager',
 
     date: () =>
       new Date().toDateString(),
@@ -2822,349 +2834,136 @@ function setupCalc(win) {
    ========================================================= */
 
 const playlist = [
-
-  {
-    title: 'Afterglow',
-    artist: 'Late Static',
-    duration: 184
-  },
-
-  {
-    title: 'Violet Hour',
-    artist: 'Kite & Coast',
-    duration: 212
-  },
-
-  {
-    title: 'Low Tide Motel',
-    artist: 'Paper Radio',
-    duration: 167
-  },
-
-  {
-    title: 'Amber Streetlamp',
-    artist: 'Late Static',
-    duration: 198
-  }
-
+  { title: 'Music 1', artist: 'TON-618 OS', src: 'music1.mp3' },
+  { title: 'Music 2', artist: 'TON-618 OS', src: 'music2.mp3' },
+  { title: 'Music 3', artist: 'TON-618 OS', src: 'music3.mp3' },
+  { title: 'Music 4', artist: 'TON-618 OS', src: 'music4.mp3' }
 ];
 
-
 function setupMusic(win) {
+  const audio = win.querySelector('#mu-audio');
+  const title = win.querySelector('#mu-title');
+  const artist = win.querySelector('#mu-artist');
+  const fill = win.querySelector('#mu-fill');
+  const elapsedEl = win.querySelector('#mu-elapsed');
+  const durationEl = win.querySelector('#mu-duration');
+  const playBtn = win.querySelector('#mu-play');
+  const list = win.querySelector('#mu-list');
+  const progress = win.querySelector('#mu-progress');
+  const volume = win.querySelector('#mu-volume');
+  const art = win.querySelector('#mu-art');
+  if (!audio || !title || !artist || !fill || !elapsedEl || !durationEl || !playBtn || !list) return;
 
-  let idx =
-    0;
-
-  let playing =
-    false;
-
-  let elapsed =
-    0;
-
-  let timer =
-    null;
-
-
-  const title =
-    win.querySelector('#mu-title');
-
-  const artist =
-    win.querySelector('#mu-artist');
-
-  const fill =
-    win.querySelector('#mu-fill');
-
-  const elapsedEl =
-    win.querySelector('#mu-elapsed');
-
-  const durationEl =
-    win.querySelector('#mu-duration');
-
-  const playBtn =
-    win.querySelector('#mu-play');
-
-  const list =
-    win.querySelector('#mu-list');
-
-
-  if (
-    !title ||
-    !artist ||
-    !fill ||
-    !elapsedEl ||
-    !durationEl ||
-    !playBtn ||
-    !list
-  ) {
-    return;
-  }
-
-
-  function fmt(seconds) {
-
-    const minutes =
-      Math.floor(
-        seconds / 60
-      );
-
-    const remainder =
-      Math.floor(
-        seconds % 60
-      );
-
-    return (
-      `${minutes}:` +
-      `${String(remainder).padStart(2, '0')}`
-    );
-
-  }
-
+  let idx = 0;
+  const fmt = seconds => {
+    if (!Number.isFinite(seconds)) return '0:00';
+    const total = Math.max(0, Math.floor(seconds));
+    return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
+  };
 
   function renderList() {
-
-    list.innerHTML =
-      '';
-
-
-    playlist.forEach(
-      (track, i) => {
-
-        const row =
-          document.createElement(
-            'div'
-          );
-
-
-        row.className =
-          'mu-track' +
-          (
-            i === idx
-              ? ' playing'
-              : ''
-          );
-
-
-        row.innerHTML = `
-
-          <span>
-            ${track.title}
-          </span>
-
-          <small>
-            ${fmt(track.duration)}
-          </small>
-
-        `;
-
-
-        row.addEventListener(
-          'click',
-          () =>
-            loadTrack(
-              i,
-              true
-            )
-        );
-
-
-        list.appendChild(
-          row
-        );
-
-      }
-    );
-
+    list.innerHTML = playlist.map((track, i) => `
+      <button class="mu-track ${i === idx ? 'playing' : ''}" data-track="${i}" type="button">
+        <span>${track.title}</span><small>${track.src}</small>
+      </button>
+    `).join('');
+    list.querySelectorAll('[data-track]').forEach(btn => btn.addEventListener('click', () => loadTrack(Number(btn.dataset.track), true)));
   }
 
-
-  function loadTrack(
-    i,
-    autoplay = false
-  ) {
-
-    idx =
-      (
-        i +
-        playlist.length
-      ) %
-      playlist.length;
-
-
-    elapsed =
-      0;
-
-
-    const track =
-      playlist[idx];
-
-
-    title.textContent =
-      track.title;
-
-    artist.textContent =
-      track.artist;
-
-    durationEl.textContent =
-      fmt(track.duration);
-
-    elapsedEl.textContent =
-      '0:00';
-
-    fill.style.width =
-      '0%';
-
-
+  function syncMeta() {
+    const track = playlist[idx];
+    title.textContent = track.title;
+    artist.textContent = track.artist;
+    durationEl.textContent = fmt(audio.duration);
+    if (art) art.textContent = ['✦', '◉', '✺', '◒'][idx];
     renderList();
-
-
-    if (autoplay) {
-      play();
-    } else {
-      pause();
-    }
-
   }
 
-
-  function tick() {
-
-    elapsed++;
-
-    const track =
-      playlist[idx];
-
-
-    if (
-      elapsed >=
-      track.duration
-    ) {
-
-      loadTrack(
-        idx + 1,
-        true
-      );
-
-      return;
-
+  function loadTrack(i, autoplay = false) {
+    idx = (i + playlist.length) % playlist.length;
+    const track = playlist[idx];
+    audio.src = track.src;
+    audio.load();
+    elapsedEl.textContent = '0:00';
+    fill.style.width = '0%';
+    syncMeta();
+    if (autoplay) play();
+    else {
+      audio.pause();
+      playBtn.textContent = '▶';
     }
-
-
-    elapsedEl.textContent =
-      fmt(elapsed);
-
-
-    fill.style.width =
-      `${elapsed / track.duration * 100}%`;
-
   }
-
 
   function play() {
-
-    playing =
-      true;
-
-
-    playBtn.textContent =
-      '⏸';
-
-
-    clearInterval(
-      timer
-    );
-
-
-    timer =
-      setInterval(
-        tick,
-        1000
-      );
-
+    audio.play().then(() => {
+      playBtn.textContent = '⏸';
+    }).catch(() => {
+      playBtn.textContent = '▶';
+      showToast('🎵', 'Music', `Add ${playlist[idx].src} next to index.html, then press play.`);
+    });
   }
-
 
   function pause() {
-
-    playing =
-      false;
-
-
-    playBtn.textContent =
-      '▶';
-
-
-    clearInterval(
-      timer
-    );
-
-
-    timer =
-      null;
-
+    audio.pause();
+    playBtn.textContent = '▶';
   }
 
+  audio.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = fmt(audio.duration);
+  });
 
-  playBtn.addEventListener(
-    'click',
-    () => {
+  audio.addEventListener('timeupdate', () => {
+    const ratio = audio.duration ? audio.currentTime / audio.duration : 0;
+    elapsedEl.textContent = fmt(audio.currentTime);
+    fill.style.width = `${ratio * 100}%`;
+  });
 
-      if (playing) {
-        pause();
-      } else {
-        play();
-      }
+  audio.addEventListener('play', () => { playBtn.textContent = '⏸'; });
+  audio.addEventListener('pause', () => { playBtn.textContent = '▶'; });
+  audio.addEventListener('ended', () => loadTrack(idx + 1, true));
+  audio.addEventListener('error', () => {
+    durationEl.textContent = '—';
+  });
 
-    }
-  );
+  playBtn.addEventListener('click', () => audio.paused ? play() : pause());
+  win.querySelector('#mu-next')?.addEventListener('click', () => loadTrack(idx + 1, true));
+  win.querySelector('#mu-prev')?.addEventListener('click', () => loadTrack(idx - 1, true));
+  progress?.addEventListener('click', event => {
+    if (!audio.duration) return;
+    const rect = progress.getBoundingClientRect();
+    audio.currentTime = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)) * audio.duration;
+  });
+  volume?.addEventListener('input', () => { audio.volume = Number(volume.value) / 100; });
+  audio.volume = Number(volume?.value || 60) / 100;
+  win.addEventListener('duskos:cleanup', () => audio.pause());
+  loadTrack(0, false);
+}
 
+function setupAI(win) {
+  const run = win.querySelector('#ai-prank');
+  const stop = win.querySelector('#ai-stop');
+  const stage = win.querySelector('#ai-stage');
+  if (!run || !stage) return;
 
-  win
-    .querySelector('#mu-next')
-    ?.addEventListener(
-      'click',
-      () => {
-
-        loadTrack(
-          idx + 1,
-          playing
-        );
-
-      }
-    );
-
-
-  win
-    .querySelector('#mu-prev')
-    ?.addEventListener(
-      'click',
-      () => {
-
-        loadTrack(
-          idx - 1,
-          playing
-        );
-
-      }
-    );
-
-
-  win.addEventListener(
-    'duskos:cleanup',
-    () => {
-
-      clearInterval(
-        timer
-      );
-
-    }
-  );
-
-
-  loadTrack(
-    0,
-    false
-  );
-
+  run.addEventListener('click', () => {
+    stage.hidden = false;
+    stage.innerHTML = `
+      <div class="ai-scan">SCANNING TON-618 OS...</div>
+      <div class="ai-progress"><i></i></div>
+      <div class="ai-output">Neural cache: 100%<br>Kernel state: suspicious<br>Prank level: MAX</div>
+      <button id="ai-reveal" class="ai-reveal">Reveal result</button>
+    `;
+    stage.querySelector('.ai-progress i').addEventListener('animationend', () => {
+      stage.querySelector('.ai-reveal')?.addEventListener('click', () => {
+        stage.innerHTML = `<div class="ai-rickroll"><div class="rick-emoji">😂</div><h3>GET RICKROLLED</h3><p>AI.exe found absolutely nothing.</p><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&rel=0" title="Rick Astley" allow="autoplay; encrypted-media" allowfullscreen></iframe><button class="ai-reveal" id="ai-rick-external">Open in YouTube</button></div>`;
+        stage.querySelector('#ai-rick-external')?.addEventListener('click', () => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener,noreferrer'));
+      });
+    });
+  });
+  stop?.addEventListener('click', () => {
+    stage.hidden = true;
+    stage.innerHTML = '';
+  });
 }
 
 
@@ -3265,7 +3064,7 @@ function setupMonitor(win) {
   }
   const renderProcesses = () => {
     list.innerHTML = '';
-    ['WindowServer', 'duskOS Core', ...Object.keys(openWindows).filter(id => id !== 'monitor')].forEach((id, index) => {
+    ['WindowServer', 'TON-618 OS Core', ...Object.keys(openWindows).filter(id => id !== 'monitor')].forEach((id, index) => {
       const cfg = APPS[id];
       const row = document.createElement('div');
       row.className = 'process-row';
@@ -4402,7 +4201,7 @@ function applyAppearance(light) {
 
 const savedTheme =
   localStorage.getItem(
-    'duskOS-theme'
+    'TON-618 OS-theme'
   );
 
 
@@ -4842,30 +4641,8 @@ if (
 
 
 /* =========================================================
-   CONTROL CENTER APPEARANCE
+   CONTROL CENTER APPEARANCE (handled by TON-618 theme engine)
    ========================================================= */
-
-const ccAppearance =
-  document.getElementById(
-    'cc-appearance-toggle'
-  );
-
-
-if (ccAppearance) {
-
-  ccAppearance.addEventListener(
-    'click',
-    () => {
-
-      applyAppearance(
-        !isLight
-      );
-
-    }
-  );
-
-}
-
 
 /* =========================================================
    WIFI TILE
@@ -5495,29 +5272,42 @@ document.addEventListener(
    SCREENSHOT BUTTON
    ========================================================= */
 
-const screenshotButton =
-  document.getElementById(
-    'screenshot-button'
-  );
+const screenshotButton = document.getElementById('screenshot-button');
 
-
-if (screenshotButton) {
-
-  screenshotButton.addEventListener(
-    'click',
-    () => {
-
-      showToast(
-        '📸',
-        'Screenshot',
-        'Use Windows Snipping Tool with Win + Shift + S.'
-      );
-
-    }
-  );
-
+async function takeWebsiteScreenshot() {
+  const target = document.documentElement;
+  if (!window.html2canvas) {
+    showToast('📸', 'Screenshot', 'Screenshot engine is still loading.');
+    return;
+  }
+  try {
+    showToast('📸', 'Screenshot', 'Capturing TON-618 OS...');
+    const canvas = await html2canvas(target, {
+      backgroundColor: null,
+      useCORS: true,
+      allowTaint: false,
+      logging: false,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight,
+      scale: Math.min(window.devicePixelRatio || 1, 2)
+    });
+    const link = document.createElement('a');
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+    link.download = `TON-618-OS-${stamp}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('✓', 'Screenshot saved', 'Your website screenshot was downloaded as PNG.');
+  } catch (error) {
+    console.error(error);
+    showToast('⚠️', 'Screenshot failed', 'The browser blocked part of the page. Try again.');
+  }
 }
 
+if (screenshotButton) {
+  screenshotButton.addEventListener('click', takeWebsiteScreenshot);
+}
 
 /* =========================================================
    GLOBAL RESIZE
@@ -5656,10 +5446,208 @@ applyAppearance(
    ========================================================= */
 
 console.log(
-  '%c duskOS ',
+  '%c TON-618 OS ',
   'background:#17131f;color:#fff;padding:6px 10px;border-radius:8px;font-weight:bold;'
 );
 
 console.log(
-  'duskOS desktop initialized successfully.'
+  'TON-618 OS desktop initialized successfully.'
 );
+
+/* =========================================================
+   TON-618 OS THEME ENGINE
+   ========================================================= */
+
+const TON618_THEMES = {
+  singularity: { label: 'Singularity', light: false },
+  obsidian: { label: 'Obsidian', light: false },
+  aurora: { label: 'Aurora', light: false },
+  daylight: { label: 'Daylight', light: true }
+};
+
+function currentTheme() {
+  return localStorage.getItem('ton618-theme') || 'singularity';
+}
+
+function applyTheme(theme) {
+  if (!TON618_THEMES[theme]) theme = 'singularity';
+  Object.keys(TON618_THEMES).forEach(name => document.body.classList.toggle(`theme-${name}`, name === theme));
+  document.body.classList.toggle('light-mode', TON618_THEMES[theme].light);
+  localStorage.setItem('ton618-theme', theme);
+  localStorage.setItem('duskOS-theme', TON618_THEMES[theme].light ? 'light' : 'dark');
+  document.querySelectorAll('.appearance-value').forEach(el => el.textContent = TON618_THEMES[theme].label);
+  document.querySelectorAll('[data-theme]').forEach(btn => btn.classList.toggle('active', btn.dataset.theme === theme));
+}
+
+function applyAppearance(light) {
+  const theme = light ? 'daylight' : (currentTheme() === 'daylight' ? 'singularity' : currentTheme());
+  applyTheme(theme);
+}
+
+function cycleTheme() {
+  const names = Object.keys(TON618_THEMES);
+  const next = names[(names.indexOf(currentTheme()) + 1) % names.length];
+  applyTheme(next);
+}
+
+const firstTheme = localStorage.getItem('ton618-theme') || (localStorage.getItem('duskOS-theme') === 'light' ? 'daylight' : 'singularity');
+applyTheme(firstTheme);
+
+/* theme buttons inside dynamically opened settings */
+const oldSetupSettings = setupSettings;
+setupSettings = function(win) {
+  oldSetupSettings(win);
+  win.querySelectorAll('[data-theme]').forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.theme)));
+  applyTheme(currentTheme());
+};
+
+/* =========================================================
+   DESKTOP ICONS: DRAG + PERSISTENCE + ADDABLE SHORTCUTS
+   ========================================================= */
+
+const desktopIcons = document.getElementById('desktop-icons');
+const desktopMenu = document.getElementById('desktop-context');
+const picker = document.getElementById('shortcut-picker');
+const pickerList = document.getElementById('shortcut-picker-list');
+const pickerClose = document.getElementById('shortcut-picker-close');
+const ICONS_KEY = 'ton618-desktop-icons';
+
+function iconPositions() {
+  try { return JSON.parse(localStorage.getItem(ICONS_KEY) || '{}'); } catch { return {}; }
+}
+
+function saveIconPosition(icon) {
+  const data = iconPositions();
+  data[icon.dataset.open] = {
+    left: parseInt(icon.style.left || icon.offsetLeft, 10),
+    top: parseInt(icon.style.top || icon.offsetTop, 10)
+  };
+  localStorage.setItem(ICONS_KEY, JSON.stringify(data));
+}
+
+function arrangeDesktopIcon(icon, index = 0) {
+  const saved = iconPositions()[icon.dataset.open];
+  const fallback = { left: 20, top: 54 + index * 100 };
+  const pos = saved || fallback;
+  icon.style.left = `${Math.max(8, pos.left)}px`;
+  icon.style.top = `${Math.max(42, pos.top)}px`;
+  icon.style.position = 'absolute';
+}
+
+function wireDesktopIcon(icon) {
+  if (icon.dataset.ton618Wired) return;
+  icon.dataset.ton618Wired = '1';
+  icon.draggable = false;
+  icon.addEventListener('pointerdown', event => {
+    if (event.button !== 0) return;
+    const rect = icon.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const offsetY = event.clientY - rect.top;
+    icon.setPointerCapture?.(event.pointerId);
+    let moved = false;
+    const move = ev => {
+      const maxX = Math.max(8, window.innerWidth - icon.offsetWidth - 8);
+      const maxY = Math.max(42, window.innerHeight - icon.offsetHeight - 16);
+      const left = Math.max(8, Math.min(maxX, ev.clientX - offsetX));
+      const top = Math.max(42, Math.min(maxY, ev.clientY - offsetY));
+      if (Math.abs(ev.clientX - event.clientX) + Math.abs(ev.clientY - event.clientY) > 4) moved = true;
+      if (moved) {
+        icon.style.left = `${left}px`;
+        icon.style.top = `${top}px`;
+      }
+    };
+    const up = () => {
+      document.removeEventListener('pointermove', move);
+      document.removeEventListener('pointerup', up);
+      if (moved) saveIconPosition(icon);
+    };
+    document.addEventListener('pointermove', move);
+    document.addEventListener('pointerup', up);
+  });
+}
+
+function setupDesktopIcons() {
+  document.querySelectorAll('.dicon[data-open]').forEach((icon, index) => {
+    arrangeDesktopIcon(icon, index);
+    wireDesktopIcon(icon);
+  });
+}
+
+function showDesktopMenu(x, y) {
+  if (!desktopMenu) return;
+  desktopMenu.hidden = false;
+  desktopMenu.style.left = `${Math.min(x, window.innerWidth - 230)}px`;
+  desktopMenu.style.top = `${Math.min(y, window.innerHeight - 120)}px`;
+}
+
+function hideDesktopMenu() { if (desktopMenu) desktopMenu.hidden = true; }
+
+function populateShortcutPicker() {
+  if (!pickerList) return;
+  const existing = new Set([...document.querySelectorAll('.dicon[data-open]')].map(x => x.dataset.open));
+  pickerList.innerHTML = Object.entries(APPS).map(([id, app]) => `
+    <button class="shortcut-option ${existing.has(id) ? 'is-added' : ''}" data-app="${id}" ${existing.has(id) ? 'disabled' : ''} type="button">
+      <span class="shortcut-glyph ${app.glyphClass}">${app.glyph}</span>
+      <span><b>${app.title}</b><small>${existing.has(id) ? 'Already on desktop' : 'Add shortcut'}</small></span>
+    </button>
+  `).join('');
+  pickerList.querySelectorAll('.shortcut-option:not([disabled])').forEach(btn => btn.addEventListener('click', () => addDesktopIcon(btn.dataset.app)));
+}
+
+function openShortcutPicker() {
+  hideDesktopMenu();
+  if (!picker) return;
+  picker.hidden = false;
+  populateShortcutPicker();
+}
+
+function addDesktopIcon(appId) {
+  if (!desktopIcons || !APPS[appId]) return;
+  if (desktopIcons.querySelector(`.dicon[data-open="${appId}"]`)) return;
+  const icon = document.createElement('div');
+  icon.className = 'dicon desktop-added';
+  icon.dataset.open = appId;
+  icon.innerHTML = `<div class="glyph ${APPS[appId].glyphClass}">${APPS[appId].glyph}</div><span>${APPS[appId].title}</span>`;
+  desktopIcons.appendChild(icon);
+  const count = desktopIcons.querySelectorAll('.dicon').length - 1;
+  icon.style.left = `${26 + (count % 2) * 106}px`;
+  icon.style.top = `${54 + Math.floor(count / 2) * 100}px`;
+  wireDesktopIcon(icon);
+  saveIconPosition(icon);
+  icon.addEventListener('dblclick', () => openApp(appId));
+  icon.addEventListener('click', () => {
+    document.querySelectorAll('.dicon').forEach(x => x.classList.remove('selected'));
+    icon.classList.add('selected');
+  });
+  picker.hidden = true;
+  showToast('＋', 'Desktop icon added', `${APPS[appId].title} is now on the desktop.`);
+}
+
+if (desktopIcons) setupDesktopIcons();
+if (desktop) {
+  desktop.addEventListener('contextmenu', e => { e.preventDefault(); showDesktopMenu(e.clientX, e.clientY); });
+}
+desktopMenu?.addEventListener('click', e => {
+  const action = e.target.closest('[data-desktop-action]')?.dataset.desktopAction;
+  if (action === 'add') openShortcutPicker();
+  if (action === 'reset') {
+    localStorage.removeItem(ICONS_KEY);
+    setupDesktopIcons();
+    hideDesktopMenu();
+    showToast('↺', 'Desktop reset', 'Icon positions were reset.');
+  }
+});
+pickerClose?.addEventListener('click', () => picker.hidden = true);
+document.addEventListener('click', e => {
+  if (!desktopMenu?.contains(e.target)) hideDesktopMenu();
+});
+
+/* =========================================================
+   AI.EXE REWIRE: keep it inside the window manager
+   ========================================================= */
+
+/* =========================================================
+   CONTROL CENTER / THEME CYCLE OVERRIDE
+   ========================================================= */
+const ccTheme = document.getElementById('cc-appearance-toggle');
+ccTheme?.addEventListener('click', e => { e.stopPropagation(); cycleTheme(); });
