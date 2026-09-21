@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="65%"><stop offset="0" stop-color="#28303a"/><stop offset="1" stop-color="#020304"/></radialGradient>
+    <linearGradient id="ring" x1="0" x2="1"><stop stop-color="#7f5b47"/><stop offset=".42" stop-color="#f1d7c0"/><stop offset=".62" stop-color="#fff4e7"/><stop offset="1" stop-color="#805847"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="320" height="320" rx="64" fill="url(#bg)"/>
+  <g transform="rotate(-13 160 160)" filter="url(#glow)">
+    <ellipse cx="160" cy="160" rx="115" ry="48" fill="none" stroke="url(#ring)" stroke-width="22"/>
+    <ellipse cx="160" cy="160" rx="76" ry="64" fill="#020304" stroke="#f3ddca" stroke-width="2" opacity=".95"/>
+  </g>
+  <circle cx="160" cy="160" r="32" fill="#010203"/>
+  <circle cx="160" cy="160" r="36" fill="none" stroke="#edd5c2" stroke-opacity=".55"/>
+  <text x="160" y="270" text-anchor="middle" fill="#f2e3d8" font-family="Arial,Helvetica,sans-serif" font-size="21" font-weight="700" letter-spacing="5">TON-618</text>
+</svg>
